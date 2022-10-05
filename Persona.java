@@ -10,7 +10,7 @@ public class Persona {
 		genero = g;
 		peso = p;
 		altura = a;
-		edad = d;
+		edad = e;
 	}
 	
 	
@@ -38,4 +38,34 @@ public class Persona {
 		altura += cambio;
 	}
 	
+	public double calcularIMC() {
+		return (peso / (Math.pow(altura, 2)));
+	}
+	
+	public boolean enForma() {
+		return (calcularIMC() > 18.5 && calcularIMC() < 24.9);
+	}
+	
+	public String mostrarForma() {
+		String s;
+		if (calcularIMC() < 18.5)
+			s = "Delgado/a";
+		else if (calcularIMC() > 18.5 && calcularIMC() < 24.9 )
+			s = "En forma";
+		else 
+			s = "Sobrepeso";
+		return s;
+	}
+	
+	public void cambiarGenero(char g) {
+		genero = g;
+	}
+	
+	public void cumpleanos() {
+		edad += 1;
+	}
+	
+	public int mostrarEdad() {
+		return edad;
+	}
 }
