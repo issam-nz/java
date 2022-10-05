@@ -1,16 +1,16 @@
 public class Persona {
 	String nombre;
+	int edad;
 	char genero;
 	double peso;
 	double altura;
-	int edad;
 	
-	public Persona(String n, char g, double p, double a, int e) {
+	public Persona(String n, int e, char g, double p, double a) {
 		nombre = n;
+		edad = e;
 		genero = g;
 		peso = p;
 		altura = a;
-		edad = e;
 	}
 	
 	
