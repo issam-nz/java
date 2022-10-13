@@ -1,11 +1,16 @@
-public class Linea {
-    String p;     //Pregunta
-    String ra;    //respuesta a
-    String rb;    //respuesta b
-    String rc;    //respuesta c
-    String rd;    //respuesta d
-    int n; //respuesta correcta (numero)
+import javax.swing.*;
 
+public class Linea {
+    String p;     //La pregunta
+    String ra;    //respuesta 1
+    String rb;    //respuesta 2
+    String rc;    //respuesta 3
+    String rd;    //respuesta 4
+    int n; //respuesta correcta (numero de la respuesta - de 0 a 4)
+
+    // Cada linea tiene una pregunta, opciones o respuestas(ra, rb, rc, rd) y la respuesta correcta
+
+    //Constructor
     public Linea(String p, String a, String b, String c ,String d,int n) {
         this.p = p;
         this.ra = a;
@@ -15,52 +20,62 @@ public class Linea {
         this.n = n;
     }
 
-    public String lineaString() {
-        return  this.p + "\n" +
-                "1: " + this.ra + "\n" +
-                "2: " + this.rb + "\n" +
-                "3: " + this.rc + "\n" +
-                "4: " + this.rd;
-    }
-
     public String[] opciones() {
+        // Devuelve una lista de respuestas (Array of String)
         String [] listaRep = {this.ra, this.rb, this.rc, this.rd};
         return listaRep;
     }
 }
+
 
 // ---------------------------------------------------------------------------------
 import javax.swing.JOptionPane;
 
 public class main {
     public static void main(String[] args) {
-        // intialize las lineas
-        Linea l1 = new Linea("que1", "aaa1", "bbb1", "ccc1", "ddd1", 1);
-        Linea l2 = new Linea("que2", "aaa2", "bbb2", "ccc2", "ddd2", 0);
-        Linea l3 = new Linea("que3", "aaa3", "bbb3", "ccc3", "ddd3", 3);
-        Linea l4 = new Linea("que4", "aaa4", "bbb4", "ccc4", "ddd4", 2);
+        // instanciar la clase con lineas
+        //linea 1
+        Linea l1 = new Linea("¿En que año aparecio el lenguaje Java?",
+                "1985", "1996", "2000", "1995", 1);
+        //linea 2
+        Linea l2 = new Linea("¿Como se define una clase en Java?",
+                "class", "function", "String", "while", 0);
+        //linea 3
+        Linea l3 = new Linea("¿Qué significa instanciar una clase?",
+                "Duplicar una clase", "Eliminar una clase", "Conectar dos clases", "Crear un objeto", 3);
+        //linea 4
+        Linea l4 = new Linea("¿Qué es Eclipse?",
+                "Una libreria de Java", "Una versión de Java", "Un IDE", "Ninguna de las anteriores", 2);
 
-        // make the lines(questions and respuestas) en una lista
-        Linea [] lineas = {l1, l2, l3, l4};
+        // poner las líneas en una lista
+        Linea[] lineas = {l1, l2, l3, l4};
+
+        // Contador de puntos
         int puntos = 0;
         int entrada;
 
-        // la linea completa de un formato string
-        // better maek this linea como __repr__ de la clase, seria mejor
-//        String lineaString;
-
         for (int i = 0; i < lineas.length; i++) {
-
-            String msg = "Pregunta " + (i+1) + lineas[i].p;
+            // Titulo de la pantalla
             String title = "Pregunta " + (i + 1);
-            entrada = JOptionPane.showOptionDialog(null, msg, title,
+
+            entrada = JOptionPane.showOptionDialog(null, lineas[i].p, title,
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                     null, lineas[i].opciones(), lineas[i].opciones()[0]);
 
+            // Control de entrada, si el usuoario no ha eligido nada
+            while (entrada == -1) {
+                JOptionPane.showMessageDialog(null, "Tienes que elegir una opción");
+                entrada = JOptionPane.showOptionDialog(null, lineas[i].p, title,
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                        null, lineas[i].opciones(), lineas[i].opciones()[0]);
+            }
+
+            // Aumentar un punto si la respuesta es correcta
             if (entrada == lineas[i].n)
                 puntos++;
         }
-        JOptionPane.showMessageDialog(null, ("tu puntaje es: \n" + puntos + "/" +lineas.length));
+
+        JOptionPane.showMessageDialog(null, ("Tu puntaje es: \n" + puntos + "/" +lineas.length));
+
     }
 }
-
