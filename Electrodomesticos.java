@@ -63,13 +63,11 @@ public class Electodomestico {
     }
 
 
-
-    /*
     //version 1 de hacer oferta
     // devuelve el precio con la oferta pero no cambia el precio original
     public double hacerOferta(double porcentaje) {
         return obtenerPrecioFinal() - (obtenerPrecioFinal() * porcentaje / 100);
-    }*/
+
 
     
 }
@@ -85,19 +83,21 @@ public class main {
         System.out.println("Precio con Iva: " + frigo1.obtenerPrecioFinal());
         String esEf = frigo1.esEficiente() ? "Es Eficiente" : " No es Eficiente";
         frigo1.cambiarColor("negro");
-//        frigo1.hacerOferta(12);
+        System.out.printf("precio sin IVA:" + frigo1.obtenerPrecio());
+        System.out.println("Precio con Iva(oferta): " + frigo1.hacerOferta(12));
+
 
         System.out.println("Precio sin Iva: " + frigo1.obtenerPrecio());
         System.out.println("Precio con Iva: " + frigo1.obtenerPrecioFinal());
 
         //acciones con lavadora1
         System.out.println("Lavadora 1");
-        System.out.println("Precio sin IVA: " + lavadora1.obtenerPrecio());
         System.out.println("Consumo: " + lavadora1.obtenerConsumo());
         System.out.println("Peso: " + lavadora1.obtenerPeso());
         System.out.println("Color: " + lavadora1.obtenerColor());
         System.out.println("Precio con Iva: " + lavadora1.obtenerPrecioFinal());
-
+        System.out.println("Precio sin IVA: " + lavadora1.obtenerPrecio());
+        System.out.println("Precio con IVA(oferta de 50%): " + lavadora1.hacerOferta(50));
 
     }
 
