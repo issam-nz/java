@@ -154,7 +154,7 @@ public class Main {
 
         //d5 pasar a una otra tabla los valores mayor que 50
         System.out.println("d5)");
-            //el primero saber la longtitud de la nueva tabla
+        //el primero saber la longtitud de la nueva tabla
         int contador = 0;
         for (int i = 0; i < tabla.length; i++) {
             if (tabla[i] > 50)
@@ -174,13 +174,18 @@ public class Main {
         //d6 si hay valores repetidos o no
         System.out.println("d6)");
         String valoresRepetidos = "";
+        String intToStr; // valor entero en formato String
         for (int i = 0; i < tabla.length; i++) {
             //creacion de otro boucle para comparar cada elemento de la tabla con los otros elementos
-            // i es el elemento u j es para los otros
-            for (int j = 0; j < tabla.length; j++) {
-                if (i != j) { //si i es j es la misma posicion -> no es una repeticion
-                    if (tabla[i] == tabla[j]) {
-                        valoresRepetidos += tabla[i] + ", ";
+            // i es el elemento u k es para los otros
+            for (int k = 0; k < tabla.length; k++) {
+                if (i != k) { //si i es j es la misma posicion -> no es una repeticion
+                    if (tabla[i] == tabla[k]) {
+                        intToStr = Integer.toString(tabla[i]);
+                        if (valoresRepetidos.contains(intToStr) == false)
+                            //si el valor ya esta en valorRepetidos no hacemos nada
+                            //esto es para mostrar el valor solamente una vez
+                            valoresRepetidos += tabla[i] + ", ";
                     }
                 }
             }
@@ -188,15 +193,26 @@ public class Main {
         if (valoresRepetidos.isEmpty()) {
             System.out.println("No hay valores repetidos en la tabla");
         } else {
-            if (valoresRepetidos.endsWith(", "))
-                //valoresRepetidos -= ", ";
-                //despues mostrar los valores repetidos
+            if (valoresRepetidos.endsWith(", ")) {
+                //valoresRepetidos -= ", "; y añadir las llaves {}
+                valoresRepetidos = "{" + valoresRepetidos.substring(0, valoresRepetidos.length() - 2) + "}";
+            }
+            //despues mostrar los valores repetidos
+            System.out.println("los valores repetidos son :" + valoresRepetidos);
         }
 
-
-
-
-
+        //d7 "Haz que la tabla cambie de valores metiendo en cada posición valores aleatorios entre 0 y 100, asegurándote de que todos los valores sean diferentes, solo enteros."
+        System.out.println("d7)");
+        for (int i = 0; i < tabla.length; i++) {
+            numaleatorio = (int) (Math.random()*100); //nuevo valor para tabla[i]
+            for (int k = 0; k < tabla.length; k++) {
+                while (numaleatorio == tabla[k]) {
+                    numaleatorio = (int)(Math.random()*100);
+                }
+                tabla[i] = numaleatorio;
+            }
+        }
+        System.out.println(tablaFormatoTexto(tabla)); // para mostrar la tabla de forma {1, 2, ...n}
 
     }
 }
