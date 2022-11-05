@@ -175,8 +175,10 @@ public class Main {
         System.out.println("d6)");
         String valoresRepetidos = "";
         for (int i = 0; i < tabla.length; i++) {
+            //creacion de otro boucle para comparar cada elemento de la tabla con los otros elementos
+            // i es el elemento u j es para los otros
             for (int j = 0; j < tabla.length; j++) {
-                if (i != j) {
+                if (i != j) { //si i es j es la misma posicion -> no es una repeticion
                     if (tabla[i] == tabla[j]) {
                         valoresRepetidos += tabla[i] + ", ";
                     }
